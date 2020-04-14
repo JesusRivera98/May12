@@ -40,7 +40,7 @@ app.get( '/api/studentById', ( req, res ) => {
     }
 
     let result = listOfStudents.find( ( student ) => {
-        if( student.id == id ){
+        if( student.id ===  Number( id ) ){
             return student;
         }
     });
@@ -60,7 +60,7 @@ app.get( '/api/getStudentById/:id', ( req, res ) => {
     let id = req.params.id;
 
     let result = listOfStudents.find( ( student ) => {
-        if( student.id == id ){
+        if( student.id === Number( id ) ){
             return student;
         }
     });
@@ -78,6 +78,7 @@ app.listen( 8080, () => {
 });
 
 
-//http://localhost:8080/api/students
-
-//http://localhost:8080/api/getStudentById/456
+// Base URL : http://localhost:8080/
+// GET endpoint : http://localhost:8080/api/students
+// GET by id in query : http://localhost:8080/api/studentById?id=123
+// GET by id in param : http://localhost:8080/api/getStudentById/123
