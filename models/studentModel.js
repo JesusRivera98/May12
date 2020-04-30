@@ -22,7 +22,7 @@ const Students = {
                     return createdStudent;
                 })
                 .catch( err => {
-                    return err;
+                    throw new Error( err );
                 });
     },
     getAllStudents : function(){

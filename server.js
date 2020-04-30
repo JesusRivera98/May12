@@ -3,11 +3,14 @@ const bodyParser = require( 'body-parser' );
 const morgan = require( 'morgan' );
 const mongoose = require( 'mongoose' );
 const validateToken = require( './middleware/validateToken' );
+const cors = require( './middleware/cors' );
 const { Students } = require( './models/studentModel' );
 
 const app = express();
 const jsonParser = bodyParser.json();
 
+app.use( cors );
+app.use( express.static( "public" ) );
 app.use( morgan( 'dev' ) );
 app.use( validateToken );
 
@@ -122,7 +125,8 @@ app.post( '/api/createStudent', jsonParser, ( req, res ) => {
             return res.status( 201 ).json( result ); 
         })
         .catch( err => {
-            res.statusMessage = "Something is wrong with the Database. Try again later.";
+            res.statusMessage = "Something is wrong with the Database. Try again later. " +
+                                 err.message;
             return res.status( 500 ).end();
         });
 });
