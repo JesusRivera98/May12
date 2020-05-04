@@ -5,6 +5,7 @@ const mongoose = require( 'mongoose' );
 const validateToken = require( './middleware/validateToken' );
 const cors = require( './middleware/cors' );
 const { Students } = require( './models/studentModel' );
+const {DATABASE_URL, PORT} = require( './config' );
 
 const app = express();
 const jsonParser = bodyParser.json();
@@ -155,7 +156,7 @@ app.delete( '/api/removeStudent', ( req, res ) => {
     return res.status( 204 ).end();
 });
 
-app.listen( 8080, () => {
+app.listen( PORT, () => {
     console.log( "This server is running on port 8080" );
 
     new Promise( ( resolve, reject ) => {
@@ -165,7 +166,7 @@ app.listen( 8080, () => {
             useUnifiedTopology: true, 
             useCreateIndex: true
         };
-        mongoose.connect( 'mongodb://localhost/studentsdb', settings, ( err ) => {
+        mongoose.connect( DATABASE_URL, settings, ( err ) => {
             if( err ){
                 return reject( err );
             }
@@ -193,3 +194,7 @@ app.listen( 8080, () => {
 
 // Use the mongo shell
 // mongo
+
+
+
+

@@ -1,4 +1,4 @@
-const TOKEN = 'password12345';
+const {TOKEN} = require( './../config' );
 
 function validateToken( req, res, next ){
 
