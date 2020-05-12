@@ -10,7 +10,7 @@ const {DATABASE_URL, PORT} = require( './config' );
 const app = express();
 const jsonParser = bodyParser.json();
 
-app.use( cors );
+//app.use( cors );
 app.use( express.static( "public" ) );
 app.use( morgan( 'dev' ) );
 app.use( validateToken );
